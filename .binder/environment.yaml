@@ -1,7 +1,15 @@
-name: llm
+name: storyline
 channels:
   - conda-forge
 dependencies:
   - ipywidgets
   - ipykernel
   - jupyterlab
+  - matplotlib
+  - networkx
+  - nltk
+  - pandas
+  - plotly
+  - seaborn
+  - pillow
+  - fpdf2
