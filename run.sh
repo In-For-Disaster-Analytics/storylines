@@ -9,6 +9,7 @@ set -xe
 export GIT_REPO_URL="https://github.com/In-For-Disaster-Analytics/storylines.git"
 export COOKBOOK_NAME="Storylines"
 export COOKBOOK_CONDA_ENV="Storylines"
+export PYTHON_VERSION="3.12.9"
 IS_GPU_JOB=false
 
 
@@ -238,10 +239,10 @@ function conda_environment_exists() {
 
 function create_conda_environment() {
 	if [ -f $COOKBOOK_WORKSPACE_DIR/.binder/environment.yml ]; then
-		conda env create -n ${COOKBOOK_CONDA_ENV} -f $COOKBOOK_WORKSPACE_DIR/.binder/environment.yml --yes
+		conda env create -n ${COOKBOOK_CONDA_ENV} python=${PYTHON_VERSION} -f $COOKBOOK_WORKSPACE_DIR/.binder/environment.yml --yes
 		conda activate ${COOKBOOK_CONDA_ENV}
 	elif  [ -f $COOKBOOK_WORKSPACE_DIR/.binder/environment.yaml ]; then
-		conda env create -n ${COOKBOOK_CONDA_ENV} -f $COOKBOOK_WORKSPACE_DIR/.binder/environment.yaml --yes
+		conda env create -n ${COOKBOOK_CONDA_ENV} python=${PYTHON_VERSION} -f $COOKBOOK_WORKSPACE_DIR/.binder/environment.yaml --yes
 		conda activate ${COOKBOOK_CONDA_ENV}
 	fi
 	if [ -f $COOKBOOK_WORKSPACE_DIR/.binder/requirements.txt ]; then
