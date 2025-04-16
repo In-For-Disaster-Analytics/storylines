@@ -6,8 +6,6 @@ USER root
 
 EXPOSE 8888
 
-ARG PYVER="3.12.9"
-
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -17,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     locales \
     pandoc \
-    python$PYVER \
+    python3 \
     python3-pip \
     wget \
     unzip \

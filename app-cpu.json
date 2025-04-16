@@ -148,6 +148,14 @@
     "isInteractive": true,
     "icon": "jupyter",
     "category": "Data Processing",
-    "queueFilter": ["vm-small","normal","large","development","gpu-a100", "gpu-a100-dev", "gpu-a100-small"]
+    "queueFilter": [
+      "vm-small",
+      "normal",
+      "large",
+      "development",
+      "gpu-a100",
+      "gpu-a100-dev",
+      "gpu-a100-small"
+    ]
   }
 }
