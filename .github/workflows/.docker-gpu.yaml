@@ -4,9 +4,9 @@ name: Create and publish a Docker image GPU
 # Configures this workflow to run every time a change is pushed to the branch called `release`.
 on:
   push:
-    branches: "*"
+    branches: '*'
     tags:
-      - "*"
+      - '*'
   pull_request:
 
 # Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
@@ -56,3 +56,4 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          file: Dockerfile.gpu
