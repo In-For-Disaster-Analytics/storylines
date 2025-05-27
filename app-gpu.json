@@ -139,7 +139,16 @@
         "includeLaunchFiles": true
       }
     },
-    "fileInputs": [],
+    "fileInputs": [
+      {
+        "name": "Audio File",
+        "description": "Audio file to transcribe",
+        "inputMode": "REQUIRED",
+        "autoMountLocal": true,
+        "sourceUrl": null,
+        "targetPath": "audio.mp3"
+      }
+    ],
     "fileInputArrays": [],
     "nodeCount": 1,
     "coresPerNode": 16,

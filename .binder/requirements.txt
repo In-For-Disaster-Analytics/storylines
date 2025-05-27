@@ -1,1 +1,1 @@
-ipyfilechooser==0.6.0
+insanely-fast-whisper==0.0.15
