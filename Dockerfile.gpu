@@ -1,45 +1,15 @@
-FROM nvidia/cuda:12.3.0-runtime-ubuntu22.04
-
-LABEL maintainer="TACC-ACI-WMA <wma_prtl@tacc.utexas.edu>"
-
+FROM mambaorg/micromamba:2.1.1-cuda12.3.2-ubuntu22.04
 USER root
-
-EXPOSE 8888
-
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates \
+RUN apt-get update && apt-get install -y \
     curl \
-    fonts-liberation \
-    git \
-    locales \
-    pandoc \
-    python3 \
-    python3-pip \
-    wget \
-    unzip \
-    vim \
-    build-essential \
-    ssh \
-    rsync \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
-    locale-gen
+    && rm -rf /var/lib/apt/lists/*
+USER mambauser
 
-RUN pip install --upgrade --no-cache-dir \
-    pip \
-    setuptools \
-    wheel
-
-
-RUN chmod +x /tapis/run.sh
-
-USER ${NB_UID}
-
-# Setup work directory
-RUN mkdir "${NB_HOME}/work"
-
-WORKDIR "${NB_HOME}"
-
+COPY --chown=$MAMBA_USER:$MAMBA_USER environment.yaml /tmp/env.yaml
+RUN micromamba install -y -n base -f /tmp/env.yaml && \
+    micromamba clean --all --yes
+COPY --chmod=755 run.sh /tapis/run.sh
+COPY --chown=$MAMBA_USER:$MAMBA_USER main.py /code/main.py
+ENV PATH="/opt/conda/bin:${PATH}"
+ENV PATH "/code:$PATH"
 ENTRYPOINT [ "/tapis/run.sh" ]
