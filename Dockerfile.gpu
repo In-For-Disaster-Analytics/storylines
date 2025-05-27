@@ -2,6 +2,7 @@ FROM mambaorg/micromamba:2.1.1-cuda12.3.2-ubuntu22.04
 USER root
 RUN apt-get update && apt-get install -y \
     curl \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 USER mambauser
 COPY --chown=$MAMBA_USER:$MAMBA_USER .binder/environment.yaml /tmp/env.yaml
