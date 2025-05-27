@@ -1,1 +1,0 @@
-insanely-fast-whisper==0.0.15
