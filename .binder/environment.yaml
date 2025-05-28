@@ -3,5 +3,14 @@ channels:
   - conda-forge
 dependencies:
   - python=3.12.9
-  - pip:
-      - insanely-fast-whisper==0.0.15
+  - ipywidgets
+  - ipykernel
+  - jupyterlab
+  - matplotlib
+  - networkx
+  - nltk
+  - pandas
+  - plotly
+  - seaborn
+  - pillow
+  - fpdf2
