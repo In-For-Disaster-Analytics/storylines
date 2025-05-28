@@ -1,13 +1,13 @@
 {
-  "id": "whisper-transcribe-gpu",
-  "version": "sha-7bbb75f",
-  "description": "Whisper transcribe GPU",
+  "id": "cookbook-jupyter-template-gpu",
+  "version": "0.0.2",
+  "description": "Jupyter Lab environment for GPU",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "SINGULARITY",
   "runtimeVersion": null,
   "runtimeOptions": ["SINGULARITY_RUN"],
-  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/storylines-gpu:sha-7bbb75f",
+  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/cookbook-jupyter-template-gpu:0.0.2",
   "jobType": "BATCH",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -28,7 +28,60 @@
     "mpiCmd": null,
     "cmdPrefix": "mkdir $PWD/work $PWD/home $PWD/scratch;",
     "parameterSet": {
-      "appArgs": [],
+      "appArgs": [
+        {
+          "name": "Update cookbook",
+          "description": "Control whether the system will update the existing cookbook with the latest version available. This option is irrelevant if you are running the cookbook for the first time.",
+          "inputMode": "REQUIRED",
+          "arg": "false",
+          "notes": {
+            "enum_values": [
+              {
+                "true": "Update to latest version"
+              },
+              {
+                "false": "Keep current version"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update conda environment",
+          "description": "Control whether the system will update the existing conda environment with the latest version available. This option is irrelevant if you are running the cookbook for the first time.",
+          "inputMode": "REQUIRED",
+          "arg": "false",
+          "notes": {
+            "enum_values": [
+              {
+                "true": "Update to latest version."
+              },
+              {
+                "false": "Keep current version"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Git branch",
+          "description": "The branch of the git repository to clone.",
+          "inputMode": "REQUIRED",
+          "arg": "main",
+          "notes": {
+            "isHidden": true,
+            "enum_values": [
+              {
+                "jupyterenv": "Jupyter Lab environment"
+              },
+              {
+                "dev": "Development"
+              },
+              {
+                "main": "main"
+              }
+            ]
+          }
+        }
+      ],
       "containerArgs": [
         {
           "name": "Jupyter Mounts",
@@ -106,11 +159,11 @@
   },
   "tags": ["portalName: ALL"],
   "notes": {
-    "label": "Whisper Transcribe (GPU)",
+    "label": "Cookbook - Jupyter Lab (GPU)",
     "hideNodeCountAndCoresPerNode": true,
     "isInteractive": true,
-    "icon": "whisper",
+    "icon": "jupyter",
     "category": "Data Processing",
-    "queueFilter": ["gpu-a100"]
+    "queueFilter": ["gpu-a100", "gpu-a100-dev", "gpu-a100-small"]
   }
 }
